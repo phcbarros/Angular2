@@ -1,4 +1,10 @@
-<label for="">Name:</label>
+<style>
+    .name {
+        color: yellow;
+    }
+</style>
+
+<label for="" class="name">Name:</label>
 <input type="text" [(ngModel)]="yourName" placeholder="Enter a name here">
 <hr>
 <h1 [hidden]="!yourName">Hello {{yourName}}!</h1>
