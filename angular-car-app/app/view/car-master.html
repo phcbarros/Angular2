@@ -1,0 +1,29 @@
+<h1>{{title}}</h1>
+<hr>
+<div class="col-md-6">
+    <ul class="list-group">
+        <li *ngFor="#car of cars" class="list-group-item" (click)="onSelect(car)">
+            <span class="badge" [class.selected]="car == selectedCar">{{car.id}}</span>
+            <a href="#">{{car.brand}} - {{car.model}}</a>
+        </li>
+    </ul>
+</div>
+<div *ngIf="selectedCar">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="">Marca:</label>
+            <input type="text" class="form-control" [(ngModel)]="selectedCar.brand" placeholder="Marca do veículo">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="">Modelo:</label>
+            <input type="text" class="form-control" [(ngModel)]="selectedCar.model" placeholder="Modelo do veículo">
+        </div>
+    </div>
+</div>
+<style>
+    .selected {
+        background-color: red;
+    }
+</style>
