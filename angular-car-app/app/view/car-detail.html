@@ -1,0 +1,14 @@
+<div *ngIf="car">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="">Marca:</label>
+            <input type="text" class="form-control" [(ngModel)]="car.brand" placeholder="Marca do veículo">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="">Modelo:</label>
+            <input type="text" class="form-control" [(ngModel)]="car.model" placeholder="Modelo do veículo">
+        </div>
+    </div>
+</div>

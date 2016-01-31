@@ -1,14 +1,11 @@
 import {Component} from "angular2/core"
-
-interface Car {
-    id: number;
-    brand: string;
-    model: string;
-}
+import { Car } from './car';
+import { CarDetailComponent } from './car-detail.component';
 
 @Component({
     selector: "my-car",
-    templateUrl: "app/view/car-master.html" 
+    templateUrl: "app/view/car-master.html",
+    directives: [CarDetailComponent]
 })
 
 export class CarComponent {
