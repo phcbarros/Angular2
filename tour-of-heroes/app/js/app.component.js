@@ -9,7 +9,7 @@ System.register(['angular2/core'], function(exports_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var AppComponent;
+    var AppComponent, HEROES;
     return {
         setters:[
             function (core_1_1) {
@@ -19,21 +19,34 @@ System.register(['angular2/core'], function(exports_1) {
             AppComponent = (function () {
                 function AppComponent() {
                     this.title = "Tour of Heroes";
-                    this.hero = {
-                        id: 1,
-                        name: "windstorm"
-                    };
+                    this.heroes = HEROES;
                 }
+                AppComponent.prototype.onSelect = function (hero) {
+                    this.selectedHero = hero;
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: "my-app",
-                        template: "\n        <h1>{{title}}</h1>\n        <h2>{{hero.name}} details!</h2>\n        <div><label>id: </label>{{hero.id}}</div>\n        <div>\n        <label>name: </label>\n        <div><input [(ngModel)]=\"hero.name\" placeholder=\"name\"></div>\n        </div>\n    "
+                        styles: ["\n        .selected {\n            background-color: #CFD8DC !important;\n            color: white;\n        }\n        .heroes {\n            margin: 0 0 2em 0;\n            list-style-type: none;\n            padding: 0;\n            width: 10em;\n        }\n        .heroes li {\n            cursor: pointer;\n            position: relative;\n            left: 0;\n            background-color: #EEE;\n            margin: .5em;\n            padding: .2em 0em;\n            height: 1.7em;\n            border-radius: 4px;\n        }\n        .heroes li.selected:hover {\n            color: white;\n        }\n        .heroes li:hover {\n            color: #607D8B;\n            background-color: #EEE;\n            left: .1em;\n        }\n        .heroes .text {\n            position: relative;\n            top: -3px;\n        }\n        .heroes .badge {\n            display: inline-block;\n            font-size: small;\n            color: white;\n            padding: 0.4em 0.7em 0em 0.7em;\n            background-color: #607D8B;\n            line-height: 1em;\n            position: relative;\n            left: -1px;\n            top: -4px;\n            height: 1.9em;\n            margin-right: .8em;\n            border-radius: 4px 0px 0px 4px;\n        }\n    "],
+                        template: "\n        <h1>{{title}}</h1>\n        <h2>My Heroes</h2>\n        <ul class=\"heroes\">\n            <li *ngFor=\"#hero of heroes\" (click)=\"onSelect(hero)\" [class.selected]=\"hero === selectedHero\">\n                <span class=\"badge\">{{hero.id}}</span> {{hero.name}}\n            </li>\n        </ul>\n        <div *ngIf=\"selectedHero\">\n            <h2>{{selectedHero.name}} details!</h2>\n            <div><label>id: </label>{{selectedHero.id}}</div>\n            <div>\n            <label>name: </label>\n            <div><input [(ngModel)]=\"selectedHero.name\" placeholder=\"name\"></div>\n            </div>\n        </div>\n    "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
                 return AppComponent;
             })();
             exports_1("AppComponent", AppComponent);
+            HEROES = [
+                { "id": 11, "name": "Mr. Nice" },
+                { "id": 12, "name": "Narco" },
+                { "id": 13, "name": "Bombasto" },
+                { "id": 14, "name": "Celeritas" },
+                { "id": 15, "name": "Magneta" },
+                { "id": 16, "name": "RubberMan" },
+                { "id": 17, "name": "Dynama" },
+                { "id": 18, "name": "Dr IQ" },
+                { "id": 19, "name": "Magma" },
+                { "id": 20, "name": "Tornado" }
+            ];
         }
     }
 });
