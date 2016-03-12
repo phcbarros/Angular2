@@ -26,7 +26,17 @@ System.register(['angular2/core', './mock-car'], function(exports_1) {
                     return mock_car_1.Cars;
                 };
                 CarService.prototype.getCarsSlowy = function () {
-                    return new Promise(function (resolse) { return setTimeout(function () { return resolse(mock_car_1.Cars); }, 2000); });
+                    return new Promise(function (resolve) { return setTimeout(function () { return resolve(mock_car_1.Cars); }, 2000); });
+                };
+                CarService.prototype.getCar = function (id) {
+                    return mock_car_1.Cars.filter(function (car) {
+                        return car.id == id;
+                    })[0];
+                };
+                CarService.prototype.getCarSlowy = function (id) {
+                    return Promise.resolve(mock_car_1.Cars.filter(function (car) {
+                        return car.id === id;
+                    })[0]);
                 };
                 CarService = __decorate([
                     core_1.Injectable(), 

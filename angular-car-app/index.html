@@ -21,6 +21,7 @@
     <script src="node_modules/systemjs/dist/system.src.js"></script>
     <script src="node_modules/rxjs/bundles/Rx.js"></script>
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+    <script src="node_modules/angular2/bundles/router.dev.js"></script>
 
     <script>
         System.config({
@@ -37,7 +38,7 @@
     </script>
 
 </head>
-
+<base href="/">
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -45,24 +46,13 @@
                 <a class="navbar-brand" href="#">Car-App AngularJS 2.0</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <!--<ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">Index</a>
-                    </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-                </ul>-->
             </div>
         </div>
     </nav>
     <div class="container" style="margin-top: 5em;">
-        <my-car>
-            <h1>Carregando...</h1>
-        </my-car>
+       <car-app>
+            <h1>Carregando</h1>   
+        </car-app>
     <div>
     <!-- /.container -->
     <script src="node_modules/jquery/dist/jquery.js"></script>

@@ -4,7 +4,7 @@
     <ul class="list-group">
         <li *ngFor="#car of cars" class="list-group-item" (click)="onSelect(car)">
             <span class="badge" [class.selected]="car === selectedCar">{{car.id}}</span>
-            <a href="#">{{car.brand}} - {{car.model}}</a>
+            <p>{{car.brand}} - {{car.model}}</p>
         </li>
     </ul>
 </div>
@@ -12,5 +12,10 @@
 <style>
     .selected {
         background-color: red;
+    }
+    p{
+        color: blue;
+        text-decoration: underline;
+        cursor: pointer;
     }
 </style>
