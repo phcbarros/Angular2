@@ -9,11 +9,22 @@ import { Hero } from './hero';
 })
 export class HeroFormComponent {
     powers: string[] = ['Really Smart', 'Super Flexible', 'Super Hot', 'Weather Change'];
-    model: Hero = new Hero(18, 'Dr IQ', this.powers[0], 'Chuck Noris');
+    model: Hero = new Hero(0, '', '');
     submitted: boolean = false;
+    active: boolean = true;
 
     onSubmit() {
         this.submitted = true;
+    }
+
+    newHero() {
+        this.model = new Hero(42, this.model.name, this.model.power, this.model.alterEgo);
+        this.active = false;
+        setTimeout(() => this.active = true, 0);
+    }
+
+    edit(){
+        this.submitted = false;
     }
 
     getDiagnostic() {

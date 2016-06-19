@@ -1,25 +1,50 @@
 <div class="container">
     <h1>Hero Form</h1>
-    <form>
-        {{getDiagnostic()}}
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" required [(ngModel)]="model.name">
-        </div>
+    <div [hidden]="submitted">
+        <form *ngIf="active" (ngSubmit)="onSubmit()" #heroForm="ngForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" required [(ngModel)]="model.name" ngControl="name" #name="ngForm">
+                <div class="alert alert-danger" [hidden]="name.valid || name.pristine">
+                    Name is required
+                </div>
+            </div>
 
-        <div class="form-group">
-            <label for="name">Alter Ego</label>
-            <input type="text" class="form-control" [ngModel]="model.alterEgo" (ngModelChange)="model.alterEgo = $event">
-        </div> 
+            <div class="form-group">
+                <label for="name">Alter Ego</label>
+                <input type="text" class="form-control" [ngModel]="model.alterEgo" (ngModelChange)="model.alterEgo = $event" ngControl="alterEgo">
+            </div>
 
-        <div class="form-group">
-            <label for="name">Hero Power</label>
-            <select class="form-control" required [(ngModel)]="model.power">
+            <div class="form-group">
+                <label for="name">Hero Power</label>
+                <select class="form-control" required [(ngModel)]="model.power" ngControl="power" #power="ngForm">
                 <option [value]="power" *ngFor="let power of powers">{{power}}</option>
             </select>
+                <div class="alert alert-danger" [hidden]="power.valid || power.pristine">
+                    Power is required
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-default" (click)="newHero()">New Hero</button>
+
+            <button type="submit" class="btn btn-primary" [disabled]="!heroForm.form.valid">Submit</button>
+        </form>
+    </div>
+    <div [hidden]="!submitted">
+        <h2>Have you subimitted the following:</h2>
+        <div class="row">
+            <div class="col-xs-3">Name</div>
+            <div class="col-xs-9 pull-left">{{model.name}}</div>
         </div>
-
-        <button type="submit" class="btn btn-primary">Submit</button>
-
-    </form>
+        <div class="row">
+            <div class="col-xs-3">Alter Ego</div>
+            <div class="col-xs-9 pull-left">{{model.alterEgo}}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Power</div>
+            <div class="col-xs-9 pull-left">{{model.power}}</div>
+        </div>
+        <br/>
+        <button type="button" class="btn btn-default" (click)="edit()">Edit</button>
+    </div>
 </div>
