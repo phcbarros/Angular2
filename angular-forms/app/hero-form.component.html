@@ -1,0 +1,25 @@
+<div class="container">
+    <h1>Hero Form</h1>
+    <form>
+        {{getDiagnostic()}}
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" required [(ngModel)]="model.name">
+        </div>
+
+        <div class="form-group">
+            <label for="name">Alter Ego</label>
+            <input type="text" class="form-control" [ngModel]="model.alterEgo" (ngModelChange)="model.alterEgo = $event">
+        </div> 
+
+        <div class="form-group">
+            <label for="name">Hero Power</label>
+            <select class="form-control" required [(ngModel)]="model.power">
+                <option [value]="power" *ngFor="let power of powers">{{power}}</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+</div>
