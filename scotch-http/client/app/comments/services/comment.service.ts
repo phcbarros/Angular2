@@ -22,9 +22,9 @@ export class CommentService {
     }
 
     public addComment(body: Object): Observable<Comment[]> {
-        let bodyString = JSON.stringify(body);
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+        let bodyString = JSON.stringify(body); //stringify
+        let headers = new Headers({ 'Content-Type': 'application/json' }); //define o Content-Type
+        let options = new RequestOptions({ headers: headers }); //cria o RequestOptions
 
         return this.http.post(this.commentsUrl, bodyString, options)
             .map((res: Response) => res.json())

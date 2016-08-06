@@ -1,0 +1,12 @@
+<div class="panel panel-default">
+    <div class="panel-heading">{{comment.author}}</div>
+    <div class="panel-body">{{comment.text}}</div>
+    <div class="panel-footer">
+        <button class="btn btn-info" (click)="editComment()">
+            <span class="glyphicon glyphicon-edit"></span>
+        </button>
+        <button class="btn btn-danger" (click)="deleteComment(comment.id)">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<form (ngSubmit)="submitComment()">
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">
+                <span class="glyphicon glyphicon-user"></span>
+            </span>
+            <input type="text" class="form-control" placeholder="Author" [(ngModel)]="model.author" name="author">
+        </div>
+        <br />
+        <textarea rows="3" class="form-control" placeholder="Text" [(ngModel)]="model.text" name="text"></textarea>
+        <br />
+        <button *ngIf="!editing" type="submit" class="btn btn-primary btn-block">Add</button>
+        <button *ngIf="editing" type="submit" class="btn btn-warning btn-block">Update</button>
+    </div>
+</form>
