@@ -8,8 +8,9 @@ import { EmitterService } from '../../emitter.service';
 import { Comment } from '../model/comment';
 
 @Component({
+    moduleId: module.id,
     selector: 'comment-form',
-    templateUrl: 'app/comments/components/comment-form.html',
+    templateUrl: 'comment-form.html',
     providers: [CommentService]
 })
 

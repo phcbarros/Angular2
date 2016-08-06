@@ -4,8 +4,9 @@ import { EmitterService } from '../../emitter.service';
 import { CommentService } from '../services/comment.service';
 
 @Component({
+    moduleId: module.id,
     selector: 'comment-box',
-    templateUrl: 'app/comments/components/comment-box.html',
+    templateUrl: 'comment-box.html',
 })
 
 export class CommentBoxComponent {
