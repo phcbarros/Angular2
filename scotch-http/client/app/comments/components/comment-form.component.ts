@@ -6,6 +6,7 @@ import { CommentBoxComponent } from './comment-box.component';
 import { CommentService } from '../services/comment.service';
 import { EmitterService } from '../../emitter.service';
 import { Comment } from '../model/comment';
+import { Logger } from '../../logger/model/logger';
 
 @Component({
     moduleId: module.id,
@@ -16,7 +17,7 @@ import { Comment } from '../model/comment';
 
 export class CommentFormComponent implements OnChanges {
 
-    constructor(private commentService: CommentService) { }
+    constructor(private commentService: CommentService, private logger: Logger) { }
 
     private model = new Comment(new Date(), '', '');
     private editing = false;
@@ -41,12 +42,12 @@ export class CommentFormComponent implements OnChanges {
             if(this.editing) this.editing = !this.editing;
         },
         err => {
-            console.log(err);
+            this.logger.error(err);
         })
     }
 
     ngOnChanges(changes: any) {
-        console.log(changes);
+        this.logger.log(changes);
         //Ouve o evento editId e então seta o modelo com o valor recebido pelo evento
         EmitterService.get(this.editId).subscribe((comment: Comment) => {
             this.model = comment;

@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Comment } from '../model/comment';
 import { EmitterService } from '../../emitter.service';
 import { CommentService } from '../services/comment.service';
+import { Logger } from '../../logger/model/logger';
 
 @Component({
     moduleId: module.id,
@@ -10,7 +11,7 @@ import { CommentService } from '../services/comment.service';
 })
 
 export class CommentBoxComponent {
-    constructor(private commentService: CommentService) {}
+    constructor(private commentService: CommentService, private logger: Logger) {}
 
     @Input() comment: Comment;
     @Input() listId: string;
@@ -26,7 +27,7 @@ export class CommentBoxComponent {
                 EmitterService.get(this.listId).emit(comments);
             },
             err => {
-                console.log(err);
+                this.logger.error(err);
             });
     }
 }
