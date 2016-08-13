@@ -1,0 +1,6 @@
+<h1>
+  {{title}}
+</h1>
+<form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">
+  <button type="submit">Submit</button>
+</form>
