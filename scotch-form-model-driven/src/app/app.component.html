@@ -1,6 +1,46 @@
-<h1>
-  {{title}}
-</h1>
-<form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">
-  <button type="submit">Submit</button>
-</form>
+<div class="container-fluid">
+  <h1>
+    {{title}}
+  </h1>
+  <form [formGroup]="myForm" class="form-horizontal" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">
+
+    <div class="form-group" [ngClass]="{'has-error': !myForm.controls.name.valid && (myForm.controls.name.dirty && !submitted)}">
+      <label for="txtName" class="col col-xs-2 control-label">Name</label>
+      <div class="col col-xs-10">
+        <input type="text" class="form-control" formControlName="name" name="txtName">
+        <small class="bg-danger" [hidden]="myForm.controls.name.valid || 
+                   (myForm.controls.name.pristine && !submitted)">
+                   Name is required (minimum 5 characters).
+          </small>
+      </div>
+    </div>
+
+    <div class="form-group" formGroupName="address" [ngClass]="{'has-error': !myForm.controls.address.controls.street.valid && (myForm.controls.address.controls.street.dirty && !submitted)}">
+      <label for="txtStreet" class="col col-xs-2 control-label">Street</label>
+      <div class="col col-xs-10">
+        <input type="text" class="form-control" formControlName="street" name="txtStreet">
+        <small class="bg-danger" [hidden]="myForm.controls.address.controls.street.valid || 
+                    (myForm.controls.address.controls.street.pristine && !submitted)">
+                    Street is required
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group" formGroupName="address">
+      <label for="txtPostcode" class="col col-xs-2 control-label">Postcode</label>
+      <div class="col col-xs-10">
+        <input type="text" class="form-control" formControlName="postcode" name="txtPostcode">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col col-xs-offset-2" *ngFor="let event of events">
+        <pre>
+          {{ event | json }}
+        </pre>
+      </div>
+    </div>
+
+    <button type="submit" class="col-xs-offset-2 col-xs-10" [ngClass]="{'btn btn-success': myForm.valid}" [hidden]="!myForm.valid">Submit</button>
+  </form>
+</div>
