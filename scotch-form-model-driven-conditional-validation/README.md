@@ -1,31 +1,42 @@
-# ScotchFormModelDrivenConditionalValidation
+# Model-Driven Forms - Conditional Validation
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.11-webpack.2.
+## Aplicando validação condicinal quando o tipo método de pagamento alterar
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Criado o método subscribePaymentTypeChanges que irá ficar escutando as alterações executadas no controle **_type_**. Quando alguma mudança ocorre é efetuada a verificação do tipo de pagamento que foi selecionado pelo usuário e as regras de valiação são atualizadas conforme definido no modelo.
 
-## Code scaffolding
+```javascript
+subscribePaymentTypeChanges() {
+    //controles do formulário
+    const pmCtrl = (<any>this.myForm).controls.paymentMethod;
+    const bankCtrl: FormGroup = pmCtrl.controls.bank;
+    const cardCtrl: FormGroup = pmCtrl.controls.card;
+    
+    //inicializando o evento de detecção de mudanças no controle type
+    const changes$ = pmCtrl.controls.type.valueChanges;
+    
+    //inscrevendo-se no evento
+    changes$.subscribe(paymentMethodType => {
+      if (paymentMethodType === this.PAYMENT_METHOD_TYPE.BANK) {
+        Object.keys(bankCtrl.controls).forEach(key => {
+          bankCtrl.controls[key].setValidators(this.initPaymentMethodBankModel()[key][1]);
+          bankCtrl.controls[key].updateValueAndValidity();
+        });
+        Object.keys(cardCtrl.controls).forEach(key => {
+          cardCtrl.controls[key].setValidators(null);
+          cardCtrl.controls[key].updateValueAndValidity();
+        });
+      }
+      ...
+      }
+    });
+  }
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
+### Notas:
+1. **_FormControl_** possui o método **setValidators** para atualizar as regras de validação.
+2. Executar o método setValidators **não dipara** nenhum evento de atualização então somos obrigados a executar o método **_updateValueAndValidity_** para atualizar as regras de validação.
 
-## Build
+Por exemplo, o tipo de pagamento **Bank**, é o valor selecionado por padrão e todos os campos são obrigatórios. Se nós entrarmos com os valores para todos os campos, o estado do formulário será atualizado para **VÁLIDO**. Então quando clicamos no botão **CARD** o estado do formuário será atualizado para **INVÁLIDO** porque não entramos com os valores dos campos do cartão ainda.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/). 
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Deploying to Github Pages
-
-Run `ng github-pages:deploy` to deploy to Github Pages.
-
-## Further help
-
-To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# Fonte
+[Scotch.io - How to Implement Conditional Validation in Angular 2 Model-driven Forms](https://scotch.io/tutorials/how-to-implement-conditional-validation-in-angular-2-model-driven-forms)

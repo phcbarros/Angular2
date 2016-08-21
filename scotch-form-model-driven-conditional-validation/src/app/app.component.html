@@ -1,3 +1,120 @@
 <h1>
   {{title}}
 </h1>
+<form [formGroup]="myForm" class="form-horizontal" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">
+
+  <div class="form-group">
+    <label for="none" class="col-xs-2 control-label">Name</label>
+    <div class="col-xs-10">
+      <input type="text" class="form-control" formControlName="name">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="none" class="col-xs-12 control-label">Payment Method</label>
+  </div>
+
+  <!-- /formGroupName="paymentMethod -->
+  <div formGroupName="paymentMethod">
+    <div class="row">
+      <div class="col-xs-6">
+        <button type="button" class="btn btn-block text-capitalize" 
+          (click)="setPaymentMethodType(PAYMENT_METHOD_TYPE.BANK)"
+          [class.btn-default]="myForm.controls.paymentMethod.controls.type.value !== PAYMENT_METHOD_TYPE.BANK"
+          [class.btn-primary]="myForm.controls.paymentMethod.controls.type.value === PAYMENT_METHOD_TYPE.BANK">
+          {{ PAYMENT_METHOD_TYPE.BANK }}
+        </button>
+      </div>
+      <div class="col-xs-6">
+        <button type="button" class="btn btn-block text-capitalize" 
+        (click)="setPaymentMethodType(PAYMENT_METHOD_TYPE.CARD)"
+        [class.btn-default]="myForm.controls.paymentMethod.controls.type.value !== PAYMENT_METHOD_TYPE.CARD"
+        [class.btn-primary]="myForm.controls.paymentMethod.controls.type.value === PAYMENT_METHOD_TYPE.CARD">
+          {{ PAYMENT_METHOD_TYPE.CARD }}
+        </button>
+      </div>
+    </div>
+
+    <!-- BANK -->
+    <div *ngIf="myForm.controls.paymentMethod.controls.type.value === PAYMENT_METHOD_TYPE.BANK" class="panel-body">
+
+      <div formGroupName="bank" class="form-group">
+        <label for="none" class="col-xs-2 control-label">Account No.</label>
+        <div class="col-xs-10">
+          <input type="text" class="form-control" formControlName="accountNo">
+          <small [hidden]="myForm.controls.paymentMethod.controls.bank.controls.accountNo.valid || 
+          (myForm.controls.paymentMethod.controls.bank.controls.accountNo.pristine && !submitted)">
+              Required
+            </small>
+        </div>
+      </div>
+
+      <div formGroupName="bank" class="form-group">
+        <label for="none" class="col-xs-2 control-label">Account Holder</label>
+        <div class="col-xs-10">
+          <input type="text" class="form-control" formControlName="accountHolder">
+          <small [hidden]="myForm.controls.paymentMethod.controls.bank.controls.accountHolder.valid || 
+          (myForm.controls.paymentMethod.controls.bank.controls.accountHolder.pristine && !submitted)">
+              Required
+            </small>
+        </div>
+      </div>
+
+      <div formGroupName="bank" class="form-group">
+        <label for="none" class="col-xs-2 control-label">Routing No</label>
+        <div class="col-xs-10">
+          <input type="text" class="form-control" formControlName="routingNo">
+          <small [hidden]="myForm.controls.paymentMethod.controls.bank.controls.routingNo.valid || 
+          (myForm.controls.paymentMethod.controls.bank.controls.routingNo.pristine && !submitted)">
+              Required
+            </small>
+        </div>
+      </div>
+
+    </div>
+    <!-- /BANK -->
+
+    <!-- Card -->
+    <div *ngIf="myForm.controls.paymentMethod.controls.type.value === PAYMENT_METHOD_TYPE.CARD" class="panel-body">
+
+      <div formGroupName="card" class="form-group">
+        <label for="none" class="col-xs-2 control-label">Card No.</label>
+        <div class="col-xs-10">
+          <input type="text" class="form-control" formControlName="cardNo" placeholder="0000-0000-0000-0000">
+          <small [hidden]="myForm.controls.paymentMethod.controls.card.controls.cardNo.valid || 
+            (myForm.controls.paymentMethod.controls.card.controls.cardNo.pristine && !submitted)">
+              Required
+            </small>
+        </div>
+      </div>
+
+      <div formGroupName="card" class="form-group">
+        <label for="none" class="col-xs-2 control-label">Card Holder</label>
+        <div class="col-xs-10">
+          <input type="text" class="form-control" formControlName="cardHolder">
+          <small [hidden]="myForm.controls.paymentMethod.controls.card.controls.cardHolder.valid || 
+            (myForm.controls.paymentMethod.controls.card.controls.cardHolder.pristine && !submitted)">
+              Required
+            </small>
+        </div>
+      </div>
+
+      <div formGroupName="card" class="form-group">
+        <label for="none" class="col-xs-2 control-label">Expiry</label>
+        <div class="col-xs-10">
+          <input type="text" class="form-control" formControlName="expiry" placeholder="mm/aa">
+          <small [hidden]="myForm.controls.paymentMethod.controls.card.controls.expiry.valid || 
+          (myForm.controls.paymentMethod.controls.card.controls.expiry.pristine && !submitted)">
+              Required
+            </small>
+        </div>
+      </div>
+
+    </div>
+    <!-- /CARD -->
+
+  </div>
+  <!-- /formGroupName="paymentMethod -->
+
+  <button type="submit" class="btn btn-success" [disabled]="!myForm.valid">Submit</button>
+</form>
