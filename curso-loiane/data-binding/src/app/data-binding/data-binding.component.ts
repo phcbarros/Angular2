@@ -9,6 +9,9 @@ export class DataBindingComponent implements OnInit {
 
   nomeCurso: string = 'Angular 2 - Data Binding';
   urlImagem: string = 'http://lorempixel.com/400/200/';
+  valorAtual: string = '';
+  valorSalvo: string = '';
+  isMouseOver: boolean =  false;
 
   constructor() { }
 
@@ -18,9 +21,24 @@ export class DataBindingComponent implements OnInit {
   getValor(): number {
     return 1;
   }
-  
+
   getCurtir(): boolean {
     return true;
   }
 
+  onClick(): void {
+    alert('Fui clicado');
+  }
+
+  onKeyUp(evento: KeyboardEvent): void { 
+    this.valorAtual = (<HTMLInputElement>evento.target).value;
+  }
+
+  salvarValor(valor): void {
+    this.valorSalvo = valor;
+  }
+
+  onMouseOverOut(): void {
+    this.isMouseOver = !this.isMouseOver;
+  }
 }
