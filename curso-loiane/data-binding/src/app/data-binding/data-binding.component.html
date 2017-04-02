@@ -1,0 +1,14 @@
+<article>
+  <h2>Data Binding - Interpolation</h2>
+  <p>{{ nomeCurso }}</p>
+  <p>O resultado de 1 + 1 é {{ 1 + 1 }}</p>
+  <p>O resultado de 1 + 1 não é {{ 1 + 1 + getValor() }}</p>
+  <p>Curtiu o curso? {{ true && getCurtir() }}</p>
+</article>
+
+<article>
+  <h2>Data Binding - Property Binding</h2>
+  <p> <img src="{{ urlImagem }}"> </p>
+  <p> <img [src]="urlImagem"> </p>
+  <p><img bind-src="urlImagem"></p>
+</article>
