@@ -17,7 +17,6 @@
 
   <article>
     <h2>Class e Style Binding</h2>
-
     <select #classe (change)="0">
     <option value="alert-success">Sucesso</option>
     <option value="alert-info">Info</option>
@@ -47,21 +46,50 @@
 </section>
 
 <section class="event-binding">
-  <h2>Event Binding</h2>
   <article>
+    <h2>Event Binding</h2>
     <button class="btn btn-primary" (click)="onClick()">Me clique!
     </button>
+    <button class="btn btn-primary" on-click="onClick()">Me clique 2!</button>
     <br>
-     <br>
+    <br>
     <input type="text" #inputText 
       (keyup)="onKeyUp($event)" 
       (keyup.enter)="salvarValor($event.target.value)" 
-      (blur)="salvarValor(inputText.value)">
+      (blur)="salvarValor(inputText.value)"/>
     <p>Valor atual: {{ valorAtual }}</p>
     <p>Valor salvo: {{ valorSalvo }}</p>
     <span class="highlight"
       (mouseover)="onMouseOverOut()"
       (mouseout)="onMouseOverOut()"
       [class.highlight]="isMouseOver">Passe o mouse sobre mim.</span>
+  </article>
+</section>
+
+<section class="two-way-binding">
+  <article>
+    <h2>Two-way Data Binding</h2>
+    <div>
+      <input type="text" 
+        [value]="nome" 
+        (input)="nome = $event.target.value">
+      
+      <input type="text" 
+        [ngModel]="nome" 
+        (ngModelChange)="nome = $event">
+      
+      <input type="text" 
+        [(ngModel)]="nome">
+
+      <input type="text" 
+        bindon-ngModel="nome">
+
+      <p>Você digitou o {{ nome }}</p>
+    </div>
+    <div>
+      <p>Meu nome é {{ pessoa.nome }} e tenho {{ pessoa.idade }} anos de idade.</p>
+      <input type="text" [(ngModel)]="pessoa.nome">
+      <input type="text" [(ngModel)]="pessoa.idade">
+    </div>
   </article>
 </section>
