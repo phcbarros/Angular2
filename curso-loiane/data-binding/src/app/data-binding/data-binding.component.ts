@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DataBindingService } from "app/data-binding/data-binding.service";
+import { Aba } from "app/data-binding/aba";
+
+
 @Component({
   selector: 'app-data-binding',
   templateUrl: './data-binding.component.html',
@@ -11,14 +15,18 @@ export class DataBindingComponent implements OnInit {
   urlImagem: string = 'http://lorempixel.com/400/200/';
   valorAtual: string = '';
   valorSalvo: string = '';
-  isMouseOver: boolean =  false;
+  isMouseOver: boolean = false;
   nome: string = '';
-
   pessoa: any = { nome: '', idade: 18 };
 
-  constructor() { }
+  abaSelecionada: Aba;
+  abas: Aba[];
+
+  constructor(private dataBindingService: DataBindingService) { }
 
   ngOnInit() {
+    this.abas = this.dataBindingService.getAbas();
+    this.abaSelecionada = this.abas[1];
   }
 
   getValor(): number {
@@ -33,7 +41,7 @@ export class DataBindingComponent implements OnInit {
     alert('Fui clicado');
   }
 
-  onKeyUp(evento: KeyboardEvent): void { 
+  onKeyUp(evento: KeyboardEvent): void {
     this.valorAtual = (<HTMLInputElement>evento.target).value;
   }
 
@@ -43,5 +51,13 @@ export class DataBindingComponent implements OnInit {
 
   onMouseOverOut(): void {
     this.isMouseOver = !this.isMouseOver;
+  }
+
+  selecionarAba(aba: Aba) {
+    this.abaSelecionada = aba;
+  }
+
+  exibirAbaSelecionada(id: number): boolean {
+    return this.abaSelecionada.id === id;
   }
 }

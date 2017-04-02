@@ -1,95 +1,95 @@
 <h1>Bindings</h1>
-<section class="property-binding">
-  <article>
-    <h2>Interpolation</h2>
-    <p>{{ nomeCurso }}</p>
-    <p>O resultado de 1 + 1 é {{ 1 + 1 }}</p>
-    <p>O resultado de 1 + 1 não é {{ 1 + 1 + getValor() }}</p>
-    <p>Curtiu o curso? {{ true && getCurtir() }}</p>
-  </article>
 
-  <article>
-    <h2>Property Binding</h2>
-    <p> <img src="{{ urlImagem }}"> </p>
-    <p> <img [src]="urlImagem"> </p>
-    <p><img bind-src="urlImagem"></p>
-  </article>
+<div class="container-fluid">
+  <ul class="nav nav-tabs">
+    <li role="presentation" 
+      *ngFor="let aba of abas"
+      [class.active]="abaSelecionada === aba" 
+      (click)="selecionarAba(aba)">
+      <a href="#">{{ aba.texto }}</a>
+    </li>
+  </ul>
 
-  <article>
-    <h2>Class e Style Binding</h2>
-    <select #classe (change)="0">
-    <option value="alert-success">Sucesso</option>
-    <option value="alert-info">Info</option>
-    <option value="alert-warning">Alerta</option>
-    <option value="alert-danger">Erro</option>
-  </select>
-    <br>
-    <br>
+  <div class="row">
+    <div class="col-md-8">
+      <section class="property-binding" *ngIf="exibirAbaSelecionada(1)">
+        <article>
+          <h2>Interpolation</h2>
+          <p>{{ nomeCurso }}</p>
+          <p>O resultado de 1 + 1 é {{ 1 + 1 }}</p>
+          <p>O resultado de 1 + 1 não é {{ 1 + 1 + getValor() }}</p>
+          <p>Curtiu o curso? {{ true && getCurtir() }}</p>
+        </article>
+        <article>
+          <h2>Property Binding</h2>
+          <p><img src="{{ urlImagem }}"></p>
+          <p><img [src]="urlImagem"></p>
+          <p><img bind-src="urlImagem"></p>
+        </article>
+        <article>
+          <h2>Class e Style Binding</h2>
+          <div class="form-group">
+            <label for="selectTipoMensagem">Selecione o tipo da mensagem</label>
+            <select #classe (change)="0" class="form-control" id="selectTipoMensagem">
+              <option value="alert-success">Sucesso</option>
+              <option value="alert-info">Info</option>
+              <option value="alert-warning">Alerta</option>
+              <option value="alert-danger">Erro</option>
+            </select>
+          </div>
+          <div class="alert {{classe.value}}" role="alert">
+            Esse texto muda de cor conforme o valor selecionado.
+          </div>
+          <div class="alert" role="alert" [class.alert-success]="classe.value === 'alert-success'">Sucesso</div>
+          <div class="alert" role="alert" [class.alert-info]="classe.value === 'alert-info'">Info</div>
+          <div class="alert" role="alert" [class.alert-warning]="classe.value === 'alert-warning'">Alerta</div>
+          <div class="alert" role="alert" [class.alert-danger]="classe.value === 'alert-danger'">Erro</div>
+          <div class="alert alert-danger" role="alert" [style.display]="classe.value === 'alert-danger' ? 'block' : 'none'">Esse texto aparece somente se a oção Erro for selecionada</div>
+        </article>
+      </section>
 
-    <div class="alert {{classe.value}}" role="alert">
-      Esse texto muda de cor conforme o valor selecionado.
+      <section class="event-binding" *ngIf="exibirAbaSelecionada(2)">
+        <article>
+          <h2>Event Binding</h2>
+          <div class="form-group">
+            <button class="btn btn-primary" (click)="onClick()">Me clique!</button>
+            <button class="btn btn-primary" on-click="onClick()">Me clique 2!</button>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" #inputText (keyup)="onKeyUp($event)" (keyup.enter)="salvarValor($event.target.value)"
+              (blur)="salvarValor(inputText.value)">
+            <p class="form-control-static">Valor atual: {{ valorAtual }}</p>
+            <p class="form-control-static">Valor salvo: {{ valorSalvo }}</p>
+          </div>
+          <span class="highlight" (mouseover)="onMouseOverOut()" (mouseout)="onMouseOverOut()" [class.highlight]="isMouseOver">Passe o mouse sobre mim.</span>
+        </article>
+      </section>
+
+      <section class="two-way-binding" *ngIf="exibirAbaSelecionada(3)">
+        <article>
+          <h2>Two-way Data Binding</h2>
+          <div class="form-group">
+            <input type="text" class="form-control" [value]="nome" (input)="nome = $event.target.value">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" [ngModel]="nome" (ngModelChange)="nome = $event">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="nome">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" bindon-ngModel="nome">
+          </div>
+          <p class="text-success">Você digitou {{ nome }}</p>
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="pessoa.nome">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="pessoa.idade">
+          </div>
+          <p>Meu nome é {{ pessoa.nome }} e tenho {{ pessoa.idade }} anos de idade.</p>
+        </article>
+      </section>
     </div>
-
-    <div class="alert" role="alert" 
-      [class.alert-success]="classe.value === 'alert-success'">Sucesso</div>
-    <div class="alert" role="alert" 
-      [class.alert-info]="classe.value === 'alert-info'">Info</div>
-    <div class="alert" role="alert" 
-      [class.alert-warning]="classe.value === 'alert-warning'">Alerta</div>
-    <div class="alert" role="alert" 
-      [class.alert-danger]="classe.value === 'alert-danger'">Erro</div>
-
-    <div class="alert alert-danger" role="alert" 
-      [style.display]="classe.value === 'alert-danger' ? 'block' : 'none'">Esse texto aparece somente se a oção Erro for selecionada</div>
-
-  </article>
-</section>
-
-<section class="event-binding">
-  <article>
-    <h2>Event Binding</h2>
-    <button class="btn btn-primary" (click)="onClick()">Me clique!
-    </button>
-    <button class="btn btn-primary" on-click="onClick()">Me clique 2!</button>
-    <br>
-    <br>
-    <input type="text" #inputText 
-      (keyup)="onKeyUp($event)" 
-      (keyup.enter)="salvarValor($event.target.value)" 
-      (blur)="salvarValor(inputText.value)"/>
-    <p>Valor atual: {{ valorAtual }}</p>
-    <p>Valor salvo: {{ valorSalvo }}</p>
-    <span class="highlight"
-      (mouseover)="onMouseOverOut()"
-      (mouseout)="onMouseOverOut()"
-      [class.highlight]="isMouseOver">Passe o mouse sobre mim.</span>
-  </article>
-</section>
-
-<section class="two-way-binding">
-  <article>
-    <h2>Two-way Data Binding</h2>
-    <div>
-      <input type="text" 
-        [value]="nome" 
-        (input)="nome = $event.target.value">
-      
-      <input type="text" 
-        [ngModel]="nome" 
-        (ngModelChange)="nome = $event">
-      
-      <input type="text" 
-        [(ngModel)]="nome">
-
-      <input type="text" 
-        bindon-ngModel="nome">
-
-      <p>Você digitou o {{ nome }}</p>
-    </div>
-    <div>
-      <p>Meu nome é {{ pessoa.nome }} e tenho {{ pessoa.idade }} anos de idade.</p>
-      <input type="text" [(ngModel)]="pessoa.nome">
-      <input type="text" [(ngModel)]="pessoa.idade">
-    </div>
-  </article>
-</section>
+  </div>
+</div>
