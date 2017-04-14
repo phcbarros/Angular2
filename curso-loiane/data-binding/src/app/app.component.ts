@@ -6,5 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  valor: number = 10;
+  destruido: boolean = false;
+
+  mudarValor(): void {
+    this.valor++;
+  }
+
+  criarComponente(): void {
+    this.destruido = false;
+  }
+
+  destruirComponente() {
+    this.destruido = true;
+  }
 }
