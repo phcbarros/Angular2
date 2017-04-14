@@ -20,6 +20,7 @@ export class DataBindingComponent implements OnInit {
   pessoa: any = { nome: '', idade: 18 };
   abaSelecionada: Aba;
   abas: Aba[];
+  valorInicial: number = 15;
 
   constructor(private dataBindingService: DataBindingService) { }
 
@@ -58,5 +59,9 @@ export class DataBindingComponent implements OnInit {
 
   exibirAbaSelecionada(id: number): boolean {
     return this.abaSelecionada.id === id;
+  }
+
+  onMudouValor(evento):void {
+    console.log(evento.novoValor);
   }
 }

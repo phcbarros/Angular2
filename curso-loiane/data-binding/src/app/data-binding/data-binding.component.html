@@ -1,10 +1,7 @@
 <h1>Bindings</h1>
 
 <ul class="nav nav-tabs">
-  <li role="presentation" 
-    *ngFor="let aba of abas"
-    [class.active]="abaSelecionada === aba" 
-    (click)="selecionarAba(aba)">
+  <li role="presentation" *ngFor="let aba of abas" [class.active]="abaSelecionada === aba" (click)="selecionarAba(aba)">
     <a href="#">{{ aba.texto }}</a>
   </li>
 </ul>
@@ -87,6 +84,20 @@
           <input type="text" class="form-control" [(ngModel)]="pessoa.idade">
         </div>
         <p>Meu nome é {{ pessoa.nome }} e tenho {{ pessoa.idade }} anos de idade.</p>
+      </article>
+    </section>
+
+    <section class="input-properties" *ngIf="exibirAbaSelecionada(4)">
+      <article>
+        <h2>Input properties</h2>
+        <app-input-property [nome]="nomeCurso"></app-input-property>
+      </article>
+    </section>
+
+    <section class="output-properties" *ngIf="exibirAbaSelecionada(5)">
+      <article>
+        <h2>Output properties</h2>
+        <contador (mudouValor)="onMudouValor($event)" [valor]="valorInicial"></contador>
       </article>
     </section>
   </div>
