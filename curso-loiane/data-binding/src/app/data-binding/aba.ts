@@ -1,4 +1,4 @@
 export interface Aba {
-    id: number,
+    id: number;
     texto: string;
 }

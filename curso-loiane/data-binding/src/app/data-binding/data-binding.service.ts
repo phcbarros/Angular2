@@ -4,7 +4,6 @@ import { Aba } from "app/data-binding/aba";
 
 @Injectable()
 export class DataBindingService {
-    
     getAbas(): Aba[] {
         return [
             { id: 1, texto: 'Property binding' },
