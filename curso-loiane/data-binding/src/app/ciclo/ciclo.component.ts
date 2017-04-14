@@ -1,15 +1,14 @@
 import {
   Component,
-  OnChanges, //antes e quando o valor de property-binding é atualizado
-  OnInit, //quando o componente é inicializado
-  DoCheck, //a cada clico de verificação de mudança
-  AfterContentInit, //depois de inserir conteúdo externo na view
-  AfterContentChecked, //a cada verificação de conteúdo inserido
-  AfterViewChecked, //a cada verificação de conteúdo/conteúdo filho
-  OnDestroy, //antes da diretiva/componente ser destruido
+  OnChanges, // antes e quando o valor de property-binding é atualizado
+  OnInit, // quando o componente é inicializado
+  DoCheck, // a cada clico de verificação de mudança
+  AfterContentInit, // depois de inserir conteúdo externo na view
+  AfterContentChecked, // a cada verificação de conteúdo inserido
+  AfterViewChecked, // a cada verificação de conteúdo/conteúdo filho
+  OnDestroy, // antes da diretiva/componente ser destruido
   Input
-}
-  from '@angular/core';
+} from '@angular/core';
 
 @Component({
   selector: 'app-ciclo',

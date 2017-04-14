@@ -90,14 +90,14 @@
     <section class="input-properties" *ngIf="exibirAbaSelecionada(4)">
       <article>
         <h2>Input properties</h2>
-        <app-input-property [nome]="nomeCurso"></app-input-property>
+        <app-input-property [nomeCurso]="nomeCurso"></app-input-property>
       </article>
     </section>
 
     <section class="output-properties" *ngIf="exibirAbaSelecionada(5)">
       <article>
         <h2>Output properties</h2>
-        <contador (mudouValor)="onMudouValor($event)" [valor]="valorInicial"></contador>
+        <app-output-property (mudouValor)="onMudouValor($event)" [valor]="valorInicial"></app-output-property>
       </article>
     </section>
   </div>

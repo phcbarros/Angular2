@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { Aba } from "app/data-binding/aba";
+import { Aba } from 'app/data-binding/aba';
 
 @Injectable()
 export class DataBindingService {

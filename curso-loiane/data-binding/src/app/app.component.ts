@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  valor: number = 10;
-  destruido: boolean = false;
+  valor = 10;
+  destruido = false;
 
   mudarValor(): void {
     this.valor++;

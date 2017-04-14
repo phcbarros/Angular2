@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DataBindingService } from "app/data-binding/data-binding.service";
-import { Aba } from "app/data-binding/aba";
-
+import { DataBindingService } from 'app/data-binding/data-binding.service';
+import { Aba } from 'app/data-binding/aba';
 
 @Component({
   selector: 'app-data-binding',
@@ -11,16 +10,16 @@ import { Aba } from "app/data-binding/aba";
 })
 export class DataBindingComponent implements OnInit {
 
-  nomeCurso: string = 'Angular 2 - Data Binding';
-  urlImagem: string = 'http://lorempixel.com/400/200/';
-  valorAtual: string = '';
-  valorSalvo: string = '';
-  isMouseOver: boolean = false;
-  nome: string = '';
-  pessoa: any = { nome: '', idade: 18 };
+  nomeCurso = 'Angular 2 - Data Binding';
+  urlImagem = 'http://lorempixel.com/400/200/';
+  valorAtual = '';
+  valorSalvo = '';
+  isMouseOver = false;
+  nome = '';
+  pessoa = { nome: '', idade: 18 };
   abaSelecionada: Aba;
   abas: Aba[];
-  valorInicial: number = 15;
+  valorInicial = 15;
 
   constructor(private dataBindingService: DataBindingService) { }
 
@@ -61,7 +60,7 @@ export class DataBindingComponent implements OnInit {
     return this.abaSelecionada.id === id;
   }
 
-  onMudouValor(evento):void {
+  onMudouValor(evento): void {
     console.log(evento.novoValor);
   }
 }
