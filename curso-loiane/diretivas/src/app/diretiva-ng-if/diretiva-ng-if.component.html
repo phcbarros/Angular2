@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-6 col-sm-12 col xs-12">
-    <h3>*ngIf</h3>
+    <h3 class="text-warning">Usando *ngIf</h3>
     <div *ngIf="cursos.length > 0">
       <p class="text-primary">Cursos oferecidos:</p>
       <ul>
@@ -30,7 +30,7 @@
 </div>
 <div class="row">
   <div class="col-md-6 col-sm-12 col xs-12">
-    <h3>Usando a propriedade HTML5 hidden</h3>
+    <h3 class="text-success">Usando a propriedade HTML5 hidden</h3>
     <div [hidden]="!mostrarCursos">
       <p class="text-primary">Cursos oferecidos:</p>
       <ul>
@@ -40,5 +40,21 @@
     <div [hidden]="mostrarCursos">
       <p class="bg-warning">Não existem cursos no momento.</p>
     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-sm-12 col xs-12">
+    <h3 class="text-primary">Usando a *ngIf/Else</h3>
+    <div *ngIf="mostrarCursos else templateElse">
+      <p class="text-primary">Cursos oferecidos:</p>
+      <ul>
+        <li *ngFor="let curso of cursos">{{curso}}</li>
+      </ul>
+    </div>
+    <template #templateElse>
+      <div>
+        <p class="bg-warning">Não existem cursos no momento.</p>
+      </div>
+    </template>
   </div>
 </div>
