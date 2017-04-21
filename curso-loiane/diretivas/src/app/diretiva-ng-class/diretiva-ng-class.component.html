@@ -1,0 +1,18 @@
+<h3>Diretiva NgClass</h3>
+<h2>
+  <i class="glyphicon"
+    [class.glyphicon-star-empty]="!meuFavorito"
+    [class.glyphicon-star]="meuFavorito"
+    (click)="onClick()"
+  ></i>
+</h2>
+
+<h2>
+  <i class="glyphicon"
+    [ngClass]="{
+      'glyphicon-star-empty': !meuFavorito,
+      'glyphicon-star': meuFavorito 
+    }"
+    (click)="onClick()"
+  ></i>
+</h2>
