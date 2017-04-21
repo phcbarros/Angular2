@@ -45,9 +45,35 @@
       <li *ngFor="let curso of cursos">{{curso}}</li>
     </ul>
   </div>
-  <template #templateElse>
+  <ng-template #templateElse>
     <div>
       <p class="bg-warning">Não existem cursos no momento.</p>
     </div>
-  </template>
+  </ng-template>
+</section>
+<h3>Removendo o * e usando o template</h3>
+<section>
+  <div template="ngIf mostrarCursos">
+    <p class="text-primary">Cursos oferecidos:</p>
+    <ul>
+      <li *ngFor="let curso of cursos">{{curso}}</li>
+    </ul>
+  </div>
+  <div template="ngIf !mostrarCursos">
+    <p class="bg-warning">Não existem cursos no momento.</p>
+  </div>
+
+  <ng-template [ngIf]="mostrarCursos">
+    <div>
+      <p class="text-primary">Cursos oferecidos:</p>
+      <ul>
+        <li *ngFor="let curso of cursos">{{curso}}</li>
+      </ul>
+    </div>
+  </ng-template>
+  <ng-template [ngIf]="!mostrarCursos">
+    <div>
+      <p class="bg-warning">Não existem cursos no momento.</p>
+    </div>
+  </ng-template>
 </section>
