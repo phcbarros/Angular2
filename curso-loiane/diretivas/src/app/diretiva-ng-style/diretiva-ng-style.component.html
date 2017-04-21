@@ -1,0 +1,23 @@
+<h3>Diretiva NgStyle</h3>
+<h5>Styles com property binding</h5>
+<div [style.padding]="'5px'">
+  <button 
+    [style.backgroundColor]="ativo ? 'blue' : 'red'" 
+    [style.color]="ativo ? 'white' : 'yellow'" 
+    [style.fontWeight]="ativo ? 'bold' : 'normal'"
+    [style.fontSize]="tamanhoFonte + 'px'" 
+    (click)="onAtivarDesativar()">Ativar/Desativar
+  </button> 
+  <input type="text" [(ngModel)]="tamanhoFonte">
+</div>
+<h5>Styles com NgStyle</h5>
+<button
+  [ngStyle]="{
+    'backgroundColor': (ativo ? 'blue' : 'red'),
+    'color': (ativo ? 'white' : 'yellow'),
+    'fontWeight': (ativo ? 'bold' : 'normal'),
+    'fontSize': tamanhoFonte + 'px'
+  }"
+  (click)="onAtivarDesativar()">
+  Ativar/Desativar
+</button>
