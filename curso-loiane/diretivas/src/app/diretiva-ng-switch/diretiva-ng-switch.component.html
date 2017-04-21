@@ -1,0 +1,43 @@
+<div [style.marginTop]="'10px'">
+  <ul class="nav nav-pills">
+    <li role="presentation" [class.active]="aba == 'home'" (click)="aba = 'home'">
+      <a href="#">Home</a>
+    </li>
+    <li role="presentation" [class.active]="aba == 'profiles'" (click)="aba = 'profiles'">
+      <a href="#">Profiles</a>
+    </li>
+    <li role="presentation" [class.active]="aba == 'messages'" (click)="aba = 'messages'">
+      <a href="#">Messages</a>
+    </li>
+  </ul>
+</div>
+
+<div [ngSwitch]="aba">
+  <section *ngSwitchCase="'profiles'">
+    <h3>Exibindo <strong>profiles</strong></h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore impedit maxime laboriosam asperiores autem maiores
+      vero ad voluptates atque adipisci, quasi beatae error deserunt vitae unde. Veritatis mollitia, aspernatur.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore impedit maxime laboriosam asperiores autem maiores
+      vero ad voluptates atque adipisci, quasi beatae error deserunt vitae unde. Veritatis mollitia, aspernatur.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore impedit maxime laboriosam asperiores autem maiores
+      vero ad voluptates atque adipisci, quasi beatae error deserunt vitae unde. Veritatis mollitia, aspernatur.</p>
+  </section>
+  <section *ngSwitchCase="'messages'">
+    <h3>Exibindo <strong>message</strong></h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore impedit maxime laboriosam asperiores autem maiores
+      vero ad voluptates atque adipisci, quasi beatae error deserunt vitae unde. Veritatis mollitia, aspernatur.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore impedit maxime laboriosam asperiores autem maiores
+      vero ad voluptates atque adipisci, quasi beatae error deserunt vitae unde. Veritatis mollitia, aspernatur.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore impedit maxime laboriosam asperiores autem maiores
+      vero ad voluptates atque adipisci, quasi beatae error deserunt vitae unde. Veritatis mollitia, aspernatur.</p>
+  </section>
+  <section *ngSwitchDefault>
+    <h3>Exibindo <strong>Home</strong></h3>
+    <p>Aprendendo a usar a diretiva NgSwitch</p>
+    <code>
+    &lt;div [ngSwitch]="aba"&gt;
+    <p>...</p>
+    &lt;/div&gt;
+    </code>
+  </section>
+</div>
