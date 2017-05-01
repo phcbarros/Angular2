@@ -1,0 +1,70 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+        aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Diretivas</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li *ngFor="let diretiva of diretivas" 
+          [class.active]="diretiva == abaSelecionada" 
+          (click)="selecionarAba(diretiva)">
+          <a href="#">{{ diretiva }}</a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mais Diretivas<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li *ngFor="let diretiva of diretivas" 
+              [class.active]="diretiva == abaSelecionada" 
+              (click)="selecionarAba(diretiva)">
+              <a href="#">{{ diretiva }}</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-xs-12 col-md-6">
+      <ng-container [ngSwitch]="abaSelecionada">
+        <section *ngSwitchCase="'NgSwitch'">
+          <app-diretiva-ng-switch></app-diretiva-ng-switch>
+        </section>
+        <section *ngSwitchCase="'NgFor'">
+          <app-diretiva-ng-for></app-diretiva-ng-for>
+        </section>
+        <section *ngSwitchCase="'NgClass'">
+          <app-diretiva-ng-class></app-diretiva-ng-class>
+        </section>
+        <section *ngSwitchCase="'NgStyle'">
+          <app-diretiva-ng-style></app-diretiva-ng-style>
+        </section>
+        <section *ngSwitchCase="'Operador Elvis'">
+          <app-operador-elvis></app-operador-elvis>
+        </section>
+        <section *ngSwitchCase="'NgContent'">
+          <app-exemplo-ng-content>
+            <div class="title">Título do painel</div>
+            <div class="corpo">Conteúdo do corpo</div>
+          </app-exemplo-ng-content>
+        </section>
+        <section *ngSwitchDefault>
+          <app-diretiva-ng-if></app-diretiva-ng-if>
+        </section>
+      </ng-container>
+    </div>
+  </div>
+  <!--.row -->
+</div>
