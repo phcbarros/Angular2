@@ -14,7 +14,8 @@ export class NavbarComponent implements OnInit {
     'NgClass',
     'NgStyle',
     'Operador Elvis',
-    'NgContent'];
+    'NgContent',
+    'Diretivas Customizadas'];
 
   abaSelecionada = '';
 
