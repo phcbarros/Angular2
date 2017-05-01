@@ -1,0 +1,16 @@
+<h3>Lista de cursos</h3>
+
+<form class="form-inline">
+  <div class="form-group">
+    <label for="curso" class="control-label">Curso</label>
+    <input type="text" name="curso" class="control-form" #curso>
+  </div>
+  <button type="button" class="btn btn-success" (click)="adicionarCurso(curso.value)">Adicionar Curso</button>
+</form>
+<div>
+  <ul>
+    <li *ngFor="let curso of cursos">
+      {{ curso }}
+    </li>
+  </ul>
+</div>

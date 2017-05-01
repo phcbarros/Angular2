@@ -5,16 +5,14 @@ import { CursosService } from './cursos.service';
 @Component({
   selector: 'app-cursos',
   templateUrl: './cursos.component.html',
-  styleUrls: ['./cursos.component.css']
+  styleUrls: ['./cursos.component.css'],
+  providers: [CursosService]
 })
 export class CursosComponent implements OnInit {
 
   cursos = [];
-  //private _cursosService: CursosService;
 
-  constructor(private _cursosService: CursosService) { 
-    //this._cursosService = new CursosService();
-  }
+  constructor(private _cursosService: CursosService) { }
 
   ngOnInit() {
     this.cursos = this._cursosService.getCursos();
