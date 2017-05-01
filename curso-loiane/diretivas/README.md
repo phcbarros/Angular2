@@ -34,33 +34,37 @@ Permite fazer o binding de um atributo ou uma classe do html para uma variável
 
 TypeScript
 ```sh
-import { Directive, HostListener, HostBinding, ElementRef, Renderer } from '@angular/core';
+import { Directive, Input, HostListener, HostBinding, OnInit } from '@angular/core';
 
 @Directive({
-  selector: '[highlightMouse]'
+  selector: '[highlight]'
 })
-export class HighlightMouseDirective {
+export class HighlightDirective implements OnInit {
 
-  constructor(
-    private _elementRef: ElementRef,
-    private _renderer: Renderer
-  ) { }
-  
-  @HostListener('mouseenter') onMouseOver(){
-     this.backgroundColor = 'yellow';
+  constructor() { }
+
+  @Input() defaultColor: 'white';
+  @Input('highlight') highlightColor: 'yellow';
+
+  @HostListener('mouseenter') onMouseEnter() {
+    this.backgroundColor = this.highlightColor;
   }
 
   @HostListener('mouseleave') onMouseLeave(){
-     this.backgroundColor = 'white';
+    this.backgroundColor = this.defaultColor;
   }
 
   @HostBinding('style.backgroundColor') backgroundColor;
+
+  ngOnInit() {
+    this.backgroundColor = this.defaultColor;
+  }
 }
 ```
 
 HTML
 ```sh
-<p highlightMouse>
-  Texto com a diretiva highlightMouse
+<p [highlight]="'red'" [defaultColor]="'grey'">
+  Texto com cores customizadas
 </p>
 ```
