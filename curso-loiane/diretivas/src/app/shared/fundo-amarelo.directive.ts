@@ -10,7 +10,7 @@ export class FundoAmareloDirective implements OnInit {
     private _renderer: Renderer) { }
 
   ngOnInit(){
-    //não recomendado
+    //não recomendado por causa de vulnerabilidade
     //this._elementRef.nativeElement.style.backgroundColor='yellow';
     this._renderer.setElementStyle(this._elementRef.nativeElement, 'background-color', 'yellow');
   }

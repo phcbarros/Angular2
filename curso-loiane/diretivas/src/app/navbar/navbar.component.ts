@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
   abaSelecionada = '';
 
   ngOnInit() {
-    this.abaSelecionada = this.diretivas[0];
+    this.abaSelecionada = this.diretivas[this.diretivas.length-1];
   }
 
   selecionarAba(aba) {

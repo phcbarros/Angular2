@@ -2,27 +2,65 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
-## Development server
+## Diretivas Customizadas
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### ElementRef 
+Representa a referência de qualquer elemento HTML no DOM
 
-## Code scaffolding
+### Renderer
+Responsável por renderizar e fazer modificações no DOM
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+Obs: Não é recomentado alterar uma propriedade HTML diretamente usando a class ElementRef por causa de vulnerabilidade conforme o exemplo abaixo:
 
-## Build
+```sh
+ngOnInit(){
+    //Errado
+    this._elementRef.nativeElement.style.backgroundColor='yellow';
+}
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+```sh
+ngOnInit(){
+    //Correto
+    this._renderer.setElementStyle(this._elementRef.nativeElement, 'background-color', 'yellow');
+}
+```
 
-## Running unit tests
+### @HostListener
+Responsável por escutar eventos do elemento host da diretiva
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### @HostBinding 
+Permite fazer o binding de um atributo ou uma classe do html para uma variável
 
-## Running end-to-end tests
+TypeScript
+```sh
+import { Directive, HostListener, HostBinding, ElementRef, Renderer } from '@angular/core';
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+@Directive({
+  selector: '[highlightMouse]'
+})
+export class HighlightMouseDirective {
 
-## Further help
+  constructor(
+    private _elementRef: ElementRef,
+    private _renderer: Renderer
+  ) { }
+  
+  @HostListener('mouseenter') onMouseOver(){
+     this.backgroundColor = 'yellow';
+  }
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+  @HostListener('mouseleave') onMouseLeave(){
+     this.backgroundColor = 'white';
+  }
+
+  @HostBinding('style.backgroundColor') backgroundColor;
+}
+```
+
+HTML
+```sh
+<p highlightMouse>
+  Texto com a diretiva highlightMouse
+</p>
+```
