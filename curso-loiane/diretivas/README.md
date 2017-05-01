@@ -1,14 +1,27 @@
 # Diretivas
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
+## Tipos
+
+- Componentes
+- Diretivas de Atributo
+- Diretivas Estruturais
 
 ## Diretivas Customizadas
+O seletor fica entre colchetes
+```sh
+@Directive() {
+    selector: ['minhaDiretiva']
+}
+```
 
-### ElementRef 
-Representa a referência de qualquer elemento HTML no DOM
+### Diretivas de Atributos
+Mudam a aparência ou o comportamento de um elemento, componente ou outra diretiva.
 
-### Renderer
-Responsável por renderizar e fazer modificações no DOM
+#### ElementRef 
+Representa a referência de qualquer elemento HTML no DOM.
+
+#### Renderer
+Responsável por renderizar e fazer modificações no DOM.
 
 Obs: Não é recomentado alterar uma propriedade HTML diretamente usando a class ElementRef por causa de vulnerabilidade conforme o exemplo abaixo:
 
@@ -26,11 +39,11 @@ ngOnInit(){
 }
 ```
 
-### @HostListener
-Responsável por escutar eventos do elemento host da diretiva
+#### @HostListener
+Responsável por escutar eventos do elemento host da diretiva.
 
-### @HostBinding 
-Permite fazer o binding de um atributo ou uma classe do html para uma variável
+#### @HostBinding 
+Permite fazer o binding de um atributo ou uma classe do html para uma variável.
 
 TypeScript
 ```sh
@@ -67,4 +80,56 @@ HTML
 <p [highlight]="'red'" [defaultColor]="'grey'">
   Texto com cores customizadas
 </p>
+```
+### Diretivas Estruturais
+Alteram o layout do DOM adicionando, removendo ou manipulando elementos do DOM.
+
+#### TemplateRef
+Faz referência ao template da diretiva
+
+```sh
+<template [ngElse]="mostrarCurso"> <!--template-->
+  <div class="bg-danger">Não existem cursos para serem exibidos</div>
+</template> <!--template-->
+```
+
+#### ViewContainerRef
+Faz referência ao container da view, ou seja, ao conteúdo que será renderizado.
+
+```sh
+<template [ngElse]="mostrarCurso" 
+  <div class="bg-danger">Não existem cursos para serem exibidos</div><!--container-->
+</template>
+```
+
+Exemplo:
+```sh
+import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+
+@Directive({
+  selector: '[ngElse]'
+})
+export class NgElseDirective {
+
+  constructor(
+    private _templateRef: TemplateRef<any>,
+    private _viewContainerRef: ViewContainerRef
+  ) { }
+
+  @Input() set ngElse(condition) {
+    if(!condition) {
+      this._viewContainerRef.createEmbeddedView(this._templateRef);
+    }
+    else {
+        this._viewContainerRef.clear();
+    }
+  }
+}
+```
+
+HTML
+```sh
+<div *ngElse="mostrarCurso" class="bg-danger">
+  Não existem cursos para serem exibidos
+</div>
 ```

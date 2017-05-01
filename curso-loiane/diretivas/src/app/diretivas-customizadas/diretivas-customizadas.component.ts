@@ -12,4 +12,10 @@ export class DiretivasCustomizadasComponent implements OnInit {
   ngOnInit() {
   }
 
+  mostrarCurso = true;
+
+  exibirEsconderCurso(){
+    this.mostrarCurso = !this.mostrarCurso;
+  }
+
 }

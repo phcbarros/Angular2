@@ -1,3 +1,4 @@
+<h2>Diretiva de propriedades</h2>
 <p fundoAmarelo>
   Texto com fundo amarelo
 </p>
@@ -9,3 +10,14 @@
 <p [highlight]="'red'" [defaultColor]="'grey'">
   Texto com cores customizadas
 </p>
+
+<hr>
+<h2>Diretivas Estruturais - ngElse</h2>
+<div *ngIf="mostrarCurso" class="bg-success">
+  Exibindo cursos
+</div>
+<div *ngElse="mostrarCurso" class="bg-danger">
+  Não existem cursos para serem exibidos
+</div>
+<br>
+<button class="btn btn-primary" (click)="exibirEsconderCurso()">Exibir/Esconder Cursos</button>
