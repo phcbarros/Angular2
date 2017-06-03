@@ -51,3 +51,59 @@ export class CamelCasePipe implements PipeTransform {
 - A classe Pipe implementa o método **_transform_** da interface **_PipeTransform_** que recebe um valor de entrada, seguido por parametros opcionais e retorna o valor transformado.
 - Para dizer ao Angular que a classe criada é um Pipe, você precisa aplicar o decorator **_@Pipe_** que é importado do core da biblioteca do Angular.
 - O decorator **_@Pipe_** permite definir o nome que será usado dento do template html. O nome deve ser um identificador JavaScript válido.
+
+## Internacionalização i18N
+
+Os pipes de data e moeda vem configurados por padrão no formato americano (en-US). Para alterar a configuração para o português (pt-BR) é preciso importar o **_LOCALE_ID_** do core do Angular e configurá-lo no array de providers no módulo raiz da sua aplicação.
+
+Obs: O uso o **_LOCALE_ID_** ainda é expirimental.
+
+```typescript
+//app.module.ts
+import { LOCALE_ID } from '@angular/core';
+...
+
+@NgModule({
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt-BR'
+    }
+  ]
+})
+```
+
+A configuração também pode ser feita por meio de um serviço.
+
+```typescript
+//SettingsService.ts
+import { Injectable } from '@angular/core';
+
+@Injectable()
+export class SettingsService {
+
+  constructor() { }
+
+  getLocale() {
+    return 'pt-BR';
+  }
+  
+}
+```
+
+```typescript
+//app.module.ts
+import { LOCALE_ID } from '@angular/core';
+...
+
+@NgModule({
+  providers: [
+    SettingsService,
+    {
+      provide: LOCALE_ID,
+      deps: [SettingsService],
+      useFactory: settingsService => settingsService.getLocale()
+    }
+  ]
+})
+```

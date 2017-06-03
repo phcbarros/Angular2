@@ -1,5 +1,4 @@
 <h1>Exemplos de Pipes</h1>
-
 <section class="bg-info text-white m-3 p-3">
   <h3>Titulo</h3>
   <p>{{ livro.titulo }} - <span class="badge badge-success">Valor Original</span></p>
@@ -28,12 +27,13 @@
   <p>{{ livro.dataLancamento }} <span class="badge badge-success">Valor Original</span></p>
   <p>{{ livro.dataLancamento | date }} <span class="badge badge-success">Date</span></p>
   <p>{{ livro.dataLancamento | date: 'dd/MMM/yyyy' }} <span class="badge badge-success">Date ('dd/MMM/yyyy')</span></p>
+  <p>{{ livro.dataLancamento | date }} <span class="badge badge-success">Date</span></p>
 </section>
 
 <section class="bg-inverse text-success m-3 p-3">
   <h3>Sinopse</h3>
   <p>{{ livro.descricao }} <span class="badge badge-success">Valor Original</span></p>
-  <p>{{ livro.descricao | camelCase }} <span class="badge badge-success">Camelcase(customizado)</span></p>
+  <p>{{ livro.descricao | camelCase }} <span class="badge badge-success">CamelCase(customizado)</span></p>
 </section>
 
 <section class="bg-danger text-white m-3 p-3">
