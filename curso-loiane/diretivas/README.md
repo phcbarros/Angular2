@@ -8,7 +8,7 @@
 
 ## Diretivas Customizadas
 O seletor fica entre colchetes
-```sh
+```typescript
 @Directive() {
     selector: ['minhaDiretiva']
 }
@@ -25,14 +25,14 @@ Responsável por renderizar e fazer modificações no DOM.
 
 Obs: Não é recomentado alterar uma propriedade HTML diretamente usando a class ElementRef por causa de vulnerabilidade conforme o exemplo abaixo:
 
-```sh
+```typescript
 ngOnInit(){
     //Errado
     this._elementRef.nativeElement.style.backgroundColor='yellow';
 }
 ```
 
-```sh
+```typescript
 ngOnInit(){
     //Correto
     this._renderer.setElementStyle(this._elementRef.nativeElement, 'background-color', 'yellow');
@@ -46,7 +46,7 @@ Responsável por escutar eventos do elemento host da diretiva.
 Permite fazer o binding de um atributo ou uma classe do html para uma variável.
 
 TypeScript
-```sh
+```typescript
 import { Directive, Input, HostListener, HostBinding, OnInit } from '@angular/core';
 
 @Directive({
@@ -76,7 +76,7 @@ export class HighlightDirective implements OnInit {
 ```
 
 HTML
-```sh
+```html
 <p [highlight]="'red'" [defaultColor]="'grey'">
   Texto com cores customizadas
 </p>
@@ -87,7 +87,7 @@ Alteram o layout do DOM adicionando, removendo ou manipulando elementos do DOM.
 #### TemplateRef
 Faz referência ao template da diretiva
 
-```sh
+```html
 <template [ngElse]="mostrarCurso"> <!--template-->
   <div class="bg-danger">Não existem cursos para serem exibidos</div>
 </template> <!--template-->
@@ -96,14 +96,14 @@ Faz referência ao template da diretiva
 #### ViewContainerRef
 Faz referência ao container da view, ou seja, ao conteúdo que será renderizado.
 
-```sh
+```html
 <template [ngElse]="mostrarCurso" 
   <div class="bg-danger">Não existem cursos para serem exibidos</div><!--container-->
 </template>
 ```
 
 Exemplo:
-```sh
+```typescript
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
 @Directive({
@@ -128,7 +128,7 @@ export class NgElseDirective {
 ```
 
 HTML
-```sh
+```html
 <div *ngElse="mostrarCurso" class="bg-danger">
   Não existem cursos para serem exibidos
 </div>
