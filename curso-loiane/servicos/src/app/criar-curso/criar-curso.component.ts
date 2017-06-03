@@ -16,6 +16,7 @@ export class CriarCursoComponent implements OnInit {
 
   ngOnInit() {
     this.cursos = this._cursosService.getCursos();
+    this._cursosService.emitirCursoCriado.subscribe((curso) => this.cursos.push(curso));
   }
 
   adicionarCurso(curso) {

@@ -1,9 +1,12 @@
-import { Injectable } from "@angular/core";
+import { Injectable, EventEmitter } from "@angular/core";
 
 @Injectable()
 export class CursosService {
 
-    cursos = ['Angular 2', 'Java', 'C#'];
+    emitirCursoCriado = new EventEmitter<string>();
+    static emitirCurso = new EventEmitter<string>();
+
+    private cursos = ['Angular 2', 'Java', 'C#'];
 
     constructor(){
         console.log('CursosService');
@@ -15,5 +18,7 @@ export class CursosService {
 
     addCursos(curso) {
         this.cursos.push(curso);
+        this.emitirCursoCriado.emit(curso);
+        CursosService.emitirCurso.emit(curso);
     }
 }
