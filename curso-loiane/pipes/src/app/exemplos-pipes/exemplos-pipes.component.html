@@ -30,6 +30,12 @@
   <p>{{ livro.dataLancamento | date: 'dd/MMM/yyyy' }} <span class="badge badge-success">Date ('dd/MMM/yyyy')</span></p>
 </section>
 
+<section class="bg-inverse text-success m-3 p-3">
+  <h3>Sinopse</h3>
+  <p>{{ livro.descricao }} <span class="badge badge-success">Valor Original</span></p>
+  <p>{{ livro.descricao | camelCase }} <span class="badge badge-success">Camelcase(customizado)</span></p>
+</section>
+
 <section class="bg-danger text-white m-3 p-3">
   <h3>JSON</h3>
   <p>{{ livro }} <span class="badge badge-success">Valor Original</span></p>
