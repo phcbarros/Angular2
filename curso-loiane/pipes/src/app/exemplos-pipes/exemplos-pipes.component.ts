@@ -18,13 +18,25 @@ export class ExemplosPipesComponent implements OnInit {
   };
 
   livros: string[] = ['Java', 'Angular'];
+  filtro: string = '';
 
   ngOnInit() {
   }
 
-  addLivro(livro:string){
+  addLivro(livro: string) {
     this.livros.push(livro);
     console.log(this.livros);
+  }
+
+  obterLivros() {
+    if (this.livros.length === 0 || this.filtro === null || this.filtro.trim() === '')
+      return this.livros;
+
+    return this.livros.filter(value => {
+      if(value.toLocaleLowerCase().indexOf(this.filtro.toLowerCase()) !== -1)
+        return true;
+      return false;
+    });
   }
 
 }

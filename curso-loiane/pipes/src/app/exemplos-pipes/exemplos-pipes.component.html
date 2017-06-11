@@ -43,7 +43,7 @@
 </section>
 <hr>
 <section>
-  <h3>Pipes Puros (Pure Pipes)</h3>
+  <h3>Pipes Puros e Impuros</h3>
   <form>
     <div class="form-group">
       <label for="filtroTxt">Filtro</label>
@@ -54,9 +54,22 @@
       <input type="text" name="novoLivroTxt" class="form-control" 
         #novoLivro 
         (keyup.enter)="addLivro(novoLivro.value); novoLivro.value='';">
+      <small class="form-text text-muted">Pressione enter para inserir um novo livro</small>
     </div>
   </form>
+  
+  <h4>Pipes Puros (Pure Pipes)</h4>
   <ul>
     <li *ngFor="let item of livros | filtroArray:filtro">{{ item }}</li>
+  </ul>
+
+  <h4>Pipes Impuros (Impure Pipes)</h4>
+  <ul>
+    <li *ngFor="let item of livros | filtroArrayImpuro:filtro">{{ item }}</li>
+  </ul>
+
+  <h4>Maneira correta de usar pipes em projetos reais</h4>
+  <ul>
+    <li *ngFor="let item of obterLivros()">{{ item }}</li>
   </ul>
 </section>
