@@ -240,3 +240,7 @@ export class ExemplosPipesComponent implements OnInit {
   <li *ngFor="let item of obterLivros()">{{ item }}</li>
 </ul>
 ```
+
+## Async Pipe
+
+O *_AsyncPipe_* é um exemplo de pipe impuro que aceita *_Promises_* ou *_Observable_* como entrada e se inscreve automaticamente retornando os valores emitidos.

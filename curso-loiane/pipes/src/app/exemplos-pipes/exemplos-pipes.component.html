@@ -72,4 +72,13 @@
   <ul>
     <li *ngFor="let item of obterLivros()">{{ item }}</li>
   </ul>
+
+  <h4>Pipe Async</h4>
+  <div class="alert alert-success" role="alert">
+    {{ valorAssincronoPromise | async }}
+  </div>
+
+  <div class="alert alert-success" role="alert">
+    {{ valorAssincronoObservable | async }}
+  </div>
 </section>

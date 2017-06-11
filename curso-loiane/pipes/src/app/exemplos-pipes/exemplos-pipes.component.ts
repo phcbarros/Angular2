@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Observable } from "rxjs/Rx";
+
 @Component({
   selector: 'app-exemplos-pipes',
   templateUrl: './exemplos-pipes.component.html',
@@ -19,6 +21,7 @@ export class ExemplosPipesComponent implements OnInit {
 
   livros: string[] = ['Java', 'Angular'];
   filtro: string = '';
+  animesAssincronos;
 
   ngOnInit() {
   }
@@ -33,10 +36,18 @@ export class ExemplosPipesComponent implements OnInit {
       return this.livros;
 
     return this.livros.filter(value => {
-      if(value.toLocaleLowerCase().indexOf(this.filtro.toLowerCase()) !== -1)
+      if (value.toLocaleLowerCase().indexOf(this.filtro.toLowerCase()) !== -1)
         return true;
       return false;
     });
   }
+
+  valorAssincronoPromise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve('Valor assíncrono com Promise'), 2000);
+  })
+
+  valorAssincronoObservable = Observable.interval(3000)
+    .map(() => 'Valor assíncrono Observable');
+
 
 }
