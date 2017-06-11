@@ -21,9 +21,22 @@ export class ExemplosPipesComponent implements OnInit {
 
   livros: string[] = ['Java', 'Angular'];
   filtro: string = '';
-  animesAssincronos;
+  
+  abas = [
+    { id: 1, name: 'Pipes Nativos', active: true },
+    { id: 2, name: 'Pipes Puros e Impuros', active: false }
+  ];
+  
+  abaSelecionada;
 
   ngOnInit() {
+    this.abaSelecionada = this.abas[0].name;
+  }
+
+  selecionarAba(aba) {
+    this.abas.forEach(item => item.active = false);
+    aba.active = true;
+    this.abaSelecionada = aba.name;
   }
 
   addLivro(livro: string) {
@@ -48,6 +61,5 @@ export class ExemplosPipesComponent implements OnInit {
 
   valorAssincronoObservable = Observable.interval(3000)
     .map(() => 'Valor assíncrono Observable');
-
 
 }

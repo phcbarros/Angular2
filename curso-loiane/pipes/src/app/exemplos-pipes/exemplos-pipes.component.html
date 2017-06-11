@@ -1,84 +1,95 @@
 <h1>Exemplos de Pipes</h1>
-<section class="bg-info text-white m-3 p-3">
-  <h3>Titulo</h3>
-  <p>{{ livro.titulo }} - <span class="badge badge-success">Valor Original</span></p>
-  <p>{{ livro.titulo | titlecase }} <span class="badge badge-success">TitleCase</span></p>
-  <p>{{ livro.titulo | uppercase }} <span class="badge badge-success">UpperCase</span></p>
-  <p>{{ livro.titulo | lowercase }} <span class="badge badge-success">LowerCase</span></p>
-  <p>{{ livro.titulo | lowercase | uppercase }} <span class="badge badge-success">Aninhado lowercase e uppercase</span></p>
-</section>
+<ul class="nav nav-tabs">
+  <li class="nav-item" *ngFor="let aba of abas">
+    <a class="nav-link" href="#" 
+      [class.active]="aba.active" 
+      (click)="selecionarAba(aba)">
+      {{ aba.name }}
+    </a>
+  </li>
+</ul>
 
-<section class="bg-success text-white m-3 p-3">
-  <h3>Avaliação</h3>
-  <p>{{ livro.avaliacao }} <span class="badge badge-info">Valor Original</span></p>
-  <p>{{ livro.avaliacao | number:'1.1-1' }} <span class="badge badge-info">Decimal ('1.1-1')</span></p>
-  <p>{{ livro.avaliacao | number:'2.1-3' }} <span class="badge badge-info">Decimal ('2.1-3')</span></p>
-</section>
+<div [ngSwitch]="abaSelecionada">
+  <section *ngSwitchCase="'Pipes Nativos'">
+    <article class="bg-info text-white m-3 p-3">
+      <h3>Titulo</h3>
+      <p>{{ livro.titulo }} - <span class="badge badge-success">Valor Original</span></p>
+      <p>{{ livro.titulo | titlecase }} <span class="badge badge-success">TitleCase</span></p>
+      <p>{{ livro.titulo | uppercase }} <span class="badge badge-success">UpperCase</span></p>
+      <p>{{ livro.titulo | lowercase }} <span class="badge badge-success">LowerCase</span></p>
+      <p>{{ livro.titulo | lowercase | uppercase }} <span class="badge badge-success">Aninhado lowercase e uppercase</span></p>
+    </article>
+    <article class="bg-success text-white m-3 p-3">
+      <h3>Avaliação</h3>
+      <p>{{ livro.avaliacao }} <span class="badge badge-info">Valor Original</span></p>
+      <p>{{ livro.avaliacao | number:'1.1-1' }} <span class="badge badge-info">Decimal ('1.1-1')</span></p>
+      <p>{{ livro.avaliacao | number:'2.1-3' }} <span class="badge badge-info">Decimal ('2.1-3')</span></p>
+    </article>
 
-<section class="bg-warning text-white m-3 p-3">
-  <h3>Preço</h3>
-  <p>{{ livro.preco }} <span class="badge badge-default">Valor Original</span></p>
-  <p>{{ livro.preco | currency }} <span class="badge badge-default">Currency</span></p>
-  <p>{{ livro.preco | currency: 'BRL':true }} <span class="badge badge-default">Currency('BRL':true)</span></p>
-</section>
+    <article class="bg-warning text-white m-3 p-3">
+      <h3>Preço</h3>
+      <p>{{ livro.preco }} <span class="badge badge-default">Valor Original</span></p>
+      <p>{{ livro.preco | currency }} <span class="badge badge-default">Currency</span></p>
+      <p>{{ livro.preco | currency: 'BRL':true }} <span class="badge badge-default">Currency('BRL':true)</span></p>
+    </article>
 
-<section class="bg-primary text-white m-3 p-3">
-  <h3>Data de Lançamento</h3>
-  <p>{{ livro.dataLancamento }} <span class="badge badge-success">Valor Original</span></p>
-  <p>{{ livro.dataLancamento | date }} <span class="badge badge-success">Date</span></p>
-  <p>{{ livro.dataLancamento | date: 'dd/MMM/yyyy' }} <span class="badge badge-success">Date ('dd/MMM/yyyy')</span></p>
-  <p>{{ livro.dataLancamento | date }} <span class="badge badge-success">Date</span></p>
-</section>
+    <article class="bg-primary text-white m-3 p-3">
+      <h3>Data de Lançamento</h3>
+      <p>{{ livro.dataLancamento }} <span class="badge badge-success">Valor Original</span></p>
+      <p>{{ livro.dataLancamento | date }} <span class="badge badge-success">Date</span></p>
+      <p>{{ livro.dataLancamento | date: 'dd/MMM/yyyy' }} <span class="badge badge-success">Date ('dd/MMM/yyyy')</span></p>
+      <p>{{ livro.dataLancamento | date }} <span class="badge badge-success">Date</span></p>
+    </article>
 
-<section class="bg-inverse text-success m-3 p-3">
-  <h3>Sinopse</h3>
-  <p>{{ livro.descricao }} <span class="badge badge-success">Valor Original</span></p>
-  <p>{{ livro.descricao | camelCase }} <span class="badge badge-success">CamelCase(customizado)</span></p>
-</section>
+    <article class="bg-inverse text-success m-3 p-3">
+      <h3>Sinopse</h3>
+      <p>{{ livro.descricao }} <span class="badge badge-success">Valor Original</span></p>
+      <p>{{ livro.descricao | camelCase }} <span class="badge badge-success">CamelCase(customizado)</span></p>
+    </article>
 
-<section class="bg-danger text-white m-3 p-3">
-  <h3>JSON</h3>
-  <p>{{ livro }} <span class="badge badge-success">Valor Original</span></p>
-  <p>{{ livro | json }} <span class="badge badge-success">JSON</span></p>
-</section>
-<hr>
-<section>
-  <h3>Pipes Puros e Impuros</h3>
-  <form>
-    <div class="form-group">
-      <label for="filtroTxt">Filtro</label>
-      <input type="text" name="filtroTxt" class="form-control" [(ngModel)]="filtro">
+    <article class="bg-danger text-white m-3 p-3">
+      <h3>JSON</h3>
+      <p>{{ livro }} <span class="badge badge-success">Valor Original</span></p>
+      <p>{{ livro | json }} <span class="badge badge-success">JSON</span></p>
+    </article>
+  </section>
+
+  <section *ngSwitchCase="'Pipes Puros e Impuros'">
+    <h3>Pipes Puros e Impuros</h3>
+    <form>
+      <div class="form-group">
+        <label for="filtroTxt">Filtro</label>
+        <input type="text" name="filtroTxt" class="form-control" [(ngModel)]="filtro">
+      </div>
+      <div class="form-group">
+        <label for="novoLivroTxt">Novo Livro</label>
+        <input type="text" name="novoLivroTxt" class="form-control" #novoLivro (keyup.enter)="addLivro(novoLivro.value); novoLivro.value='';">
+        <small class="form-text text-muted">Pressione enter para inserir um novo livro</small>
+      </div>
+    </form>
+
+    <h4>Pipes Puros (Pure Pipes)</h4>
+    <ul>
+      <li *ngFor="let item of livros | filtroArray:filtro">{{ item }}</li>
+    </ul>
+
+    <h4>Pipes Impuros (Impure Pipes)</h4>
+    <ul>
+      <li *ngFor="let item of livros | filtroArrayImpuro:filtro">{{ item }}</li>
+    </ul>
+
+    <h4>Maneira correta de usar pipes em projetos reais</h4>
+    <ul>
+      <li *ngFor="let item of obterLivros()">{{ item }}</li>
+    </ul>
+
+    <h4>Pipe Async</h4>
+    <div class="alert alert-success" role="alert">
+      {{ valorAssincronoPromise | async }}
     </div>
-    <div class="form-group">
-      <label for="novoLivroTxt">Novo Livro</label>
-      <input type="text" name="novoLivroTxt" class="form-control" 
-        #novoLivro 
-        (keyup.enter)="addLivro(novoLivro.value); novoLivro.value='';">
-      <small class="form-text text-muted">Pressione enter para inserir um novo livro</small>
+
+    <div class="alert alert-success" role="alert">
+      {{ valorAssincronoObservable | async }}
     </div>
-  </form>
-  
-  <h4>Pipes Puros (Pure Pipes)</h4>
-  <ul>
-    <li *ngFor="let item of livros | filtroArray:filtro">{{ item }}</li>
-  </ul>
-
-  <h4>Pipes Impuros (Impure Pipes)</h4>
-  <ul>
-    <li *ngFor="let item of livros | filtroArrayImpuro:filtro">{{ item }}</li>
-  </ul>
-
-  <h4>Maneira correta de usar pipes em projetos reais</h4>
-  <ul>
-    <li *ngFor="let item of obterLivros()">{{ item }}</li>
-  </ul>
-
-  <h4>Pipe Async</h4>
-  <div class="alert alert-success" role="alert">
-    {{ valorAssincronoPromise | async }}
-  </div>
-
-  <div class="alert alert-success" role="alert">
-    {{ valorAssincronoObservable | async }}
-  </div>
-</section>
+  </section>
+</div>
