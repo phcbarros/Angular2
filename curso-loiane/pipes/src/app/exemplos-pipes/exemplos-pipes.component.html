@@ -41,3 +41,22 @@
   <p>{{ livro }} <span class="badge badge-success">Valor Original</span></p>
   <p>{{ livro | json }} <span class="badge badge-success">JSON</span></p>
 </section>
+<hr>
+<section>
+  <h3>Pipes Puros (Pure Pipes)</h3>
+  <form>
+    <div class="form-group">
+      <label for="filtroTxt">Filtro</label>
+      <input type="text" name="filtroTxt" class="form-control" [(ngModel)]="filtro">
+    </div>
+    <div class="form-group">
+      <label for="novoLivroTxt">Novo Livro</label>
+      <input type="text" name="novoLivroTxt" class="form-control" 
+        #novoLivro 
+        (keyup.enter)="addLivro(novoLivro.value); novoLivro.value='';">
+    </div>
+  </form>
+  <ul>
+    <li *ngFor="let item of livros | filtroArray:filtro">{{ item }}</li>
+  </ul>
+</section>
