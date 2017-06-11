@@ -244,3 +244,31 @@ export class ExemplosPipesComponent implements OnInit {
 ## Async Pipe
 
 O *_AsyncPipe_* é um exemplo de pipe impuro que aceita *_Promises_* ou *_Observable_* como entrada e se inscreve automaticamente retornando os valores emitidos.
+
+Exemplo:
+
+```typescript
+export class ExemplosPipesComponent implements OnInit {
+
+  constructor() { }
+
+  valorAssincronoPromise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve('Valor assíncrono com Promise'), 2000);
+  })
+
+  valorAssincronoObservable = Observable.interval(3000)
+    .map(() => 'Valor assíncrono Observable');
+
+}
+```
+
+```html
+<h4>Pipe Async</h4>
+<div class="alert alert-success" role="alert">
+  {{ valorAssincronoPromise | async }}
+</div>
+
+<div class="alert alert-success" role="alert">
+  {{ valorAssincronoObservable | async }}
+</div>
+```
