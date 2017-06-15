@@ -21,3 +21,81 @@ Usada para dizer ao router como deverá compor a url de navegação. Esse elemen
     <base href="/">
 </head>
 ```
+
+### Configuração
+
+Para configurar uma rota é necessário criar um arquivo de configuração e nele efetuar o import do Angular Router.
+
+```typescript
+//app.routing.ts
+import { Routes, RouterModule } from '@angular/router';
+```
+
+Em seguida é necessário definir e configurar as rotas da sua aplicação.
+
+```typescript
+//app.routing.ts
+import { HomeComponent } from "app/home/home.component";
+import { LoginComponent } from "app/login/login.component";
+import { CursosComponent } from "app/cursos/cursos.component";
+
+const APP_ROUTES: Routes = [
+    { path: 'cursos', component: CursosComponent },
+    { path: 'login', component: LoginComponent },
+    { path: '', component: HomeComponent }
+];
+
+export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);
+```
+Em seguida efetue o import no app.module
+
+```typescript
+//app.module.ts
+import { routing } from './app.routing';
+
+@NgModule({
+  imports: [
+    routing
+  ]
+})
+```
+
+Obs.: 
+1. Quando é criado uma aplicação usando 
+**_Router Service_** essa aplicação tem somente uma instância desse serviço (singleton)
+
+2. O metódo __*RouterModule.forRoot*__ é responsável por configurar suas rotas.
+
+3. Não é necessário colocar o barra (/) no caminho das rotas.
+
+### Router Outlet
+
+Diretiva responsável por informar ao Angular onde o componente deverá ser renderizado quando o usuário clicar em algum link ou digitar na barra de endereços.
+
+```html
+<!-- app.component.html -->
+<router-outlet></router-outlet>
+<!-- Routed views go here -->
+```
+
+### Router Links
+
+A diretiva **_RouterLink_** na tag \<a> é responsável por efetuar a navegação para o componente associado quando o usuário clicar nesse elemento.
+
+```html
+<a routerLink="">Rotas NG2</a>
+<ul>
+    <li><a routerLink="login">Login</a> </li>
+    <li><a routerLink="cursos">Cursos</a></li>
+</ul>
+```
+
+A diretiva **_RouterLinkActive_** ajuda a distiguir qual rota está ativa. O router adiciona a classe CSS **_active_** no elemento associado.
+
+```html
+<ul>
+    <li routerLinkActive="active">...</li>
+    <li routerLinkActive="active">...</li>
+</ul>
+```
+
