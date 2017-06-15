@@ -35,12 +35,14 @@ Em seguida é necessário definir e configurar as rotas da sua aplicação.
 
 ```typescript
 //app.routing.ts
-import { HomeComponent } from "app/home/home.component";
-import { LoginComponent } from "app/login/login.component";
-import { CursosComponent } from "app/cursos/cursos.component";
+import { HomeComponent } from 'app/home/home.component';
+import { LoginComponent } from 'app/login/login.component';
+import { CursosComponent } from 'app/cursos/cursos.component';
+import { CursoDetalheComponent } from 'app/curso-detalhe/curso-detalhe.component';
 
 const APP_ROUTES: Routes = [
     { path: 'cursos', component: CursosComponent },
+    { path: 'curso/:id', component: CursoDetalheComponent },
     { path: 'login', component: LoginComponent },
     { path: '', component: HomeComponent }
 ];
@@ -88,6 +90,13 @@ A diretiva **_RouterLink_** na tag \<a> é responsável por efetuar a navegaçã
     <li><a routerLink="login">Login</a> </li>
     <li><a routerLink="cursos">Cursos</a></li>
 </ul>
+```
+
+É possível usar a diretiva RouterLink como property binding podendo assim passar informações dinâmicas ao invés de estáticas. O RouterLink recebe um array de parâmetros, o primeiro é o nome da rota em seguida os demais parâmetros.
+
+```html
+<li><a [routerLink]="['curso', idCurso.value]">Cursos Detalhe</a></li>
+<input type="text" #idCurso>
 ```
 
 A diretiva **_RouterLinkActive_** ajuda a distiguir qual rota está ativa. O router adiciona a classe CSS **_active_** no elemento associado.
