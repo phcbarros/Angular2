@@ -8,8 +8,8 @@
     </ul>
   </div>
 </nav>
-
 <div class="container">
+  <p>Entre com o id do curso</p>
+  <input #idCurso [(ngModel)]="idCurso.value">
   <router-outlet></router-outlet>
-  <input type="text" #idCurso>
 </div>

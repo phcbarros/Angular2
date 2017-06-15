@@ -96,7 +96,7 @@ A diretiva **_RouterLink_** na tag \<a> é responsável por efetuar a navegaçã
 
 ```html
 <li><a [routerLink]="['curso', idCurso.value]">Cursos Detalhe</a></li>
-<input type="text" #idCurso>
+<input #idCurso [(ngModel)]="idCurso.value">
 ```
 
 A diretiva **_RouterLinkActive_** ajuda a distiguir qual rota está ativa. O router adiciona a classe CSS **_active_** no elemento associado.
@@ -106,5 +106,46 @@ A diretiva **_RouterLinkActive_** ajuda a distiguir qual rota está ativa. O rou
     <li routerLinkActive="active">...</li>
     <li routerLinkActive="active">...</li>
 </ul>
+```
+
+### Parâmetros
+
+Para acessar algum parêmetro da rota é preciso importar no seu componente o **_ActivatedRoute_** da biblioteca @angular/router.
+
+```typescript
+//curso-detalhe.component.ts
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
+```
+
+Em seguida injetar no construtor do componente e increver-se para ser notificado a cada mudança na rota. Por boas práticas é bom desinscrever-se quando o componte é destuído.
+
+```typescript
+//curso-detalhe.component.ts
+
+inscricao: Subscription;
+
+constructor(private route: ActivatedRoute) {  }
+
+ngOnInit() {
+    this.inscricao = this.route.params.subscribe((params: any) => {
+      this.id = params['id'];
+    });
+  }
+
+ngOnDestroy() {
+    this.inscricao.unsubscribe();
+}
+```
+
+Caso não seja necessário ficar observando as mudanças da rota pode-se usar o método **_snapshot_** que tira uma foto da rota inicial.
+
+```typescript
+//curso-detalhe.component.ts
+constructor(private route: ActivatedRoute) {  }
+
+ngOnInit() {
+    this.id = this.route.snapshot.params['id'];
+  }
 ```
 
