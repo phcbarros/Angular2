@@ -1,28 +1,23 @@
 # Rotas
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
+O *_Angular Router_* permite a navegação de um view para outra por meio das ações do usuário.
 
-## Development server
+## Introdução
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+O modelo atual para navegação do navegador é:
 
-## Code scaffolding
+* Digita a URL na barra de endereço e navega até a página
+* Clica em um link e navega até a página
+* Clica no botão de voltar ou avançar do navegador e navega para traz ou para frente do seu histórico
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+ O Angular **_Router_** implementa esse mesmo mecanismo,interpretando a URL como uma instrução. É possível passar parâmetros opcionais, você pode ligar um link a uma rota, até mesmo navegar imperativamente quando um usuário clica em um botão ou seleciona algum item em uma combobox. O Router grava toda essas ações no histórico do navegador fazendo com que os botões de voltar e avançar funcionem corretamente.
 
-## Build
+### \<base href>
+Usada para dizer ao router como deverá compor a url de navegação. Esse elemento *_\<base>_* deve ser adicionado no index.html da aplicação como primeiro filho da tag *_\<head>_*.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```html
+<!-- index.html -->
+<head>
+    <base href="/">
+</head>
+```
